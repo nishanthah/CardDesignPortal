@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12 vertically-align">
+
+            <div class="">
+                <img class="logo" src="images/ntblogo.png">
+            </div>
+            <form #loginForm="ngForm">
+                <div class="login">
+
+                    <div class="form-group">
+                        <img class="avatar" src="images/loginicon.png">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="username" placeholder="username" #usernameM="ngModel" [(ngModel)]="usernameModel"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" placeholder="password" #passwordM="ngModel" [(ngModel)]="passwordModel"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-login btn-block" (click)="login(usernameM.value, passwordM.value)" [disabled]="!loginForm.valid">LOGIN</button>
+                    </div>
+                    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+                    <div class="form-group">
+                        <a href="#" routerLink="/forgotPassword">Forgot password ?</a>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-3 col-xs-12">
+        </div>
+    </div>
+</div>

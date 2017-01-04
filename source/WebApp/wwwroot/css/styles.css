@@ -1,0 +1,305 @@
+body{
+    font-family: "Segoe UI Semibold";
+}
+.form {
+  background: #eaebed;
+  padding: 35px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.btn-login {
+    background-color: #0080c7;
+    color: white;
+    border: none;
+    margin-bottom: 5% !important;
+    border-radius: 0px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.btn-login:hover{
+    background-color: #0074b3;
+}
+.h-option-btn{
+    background-color: #ee028b;
+    color: white;
+    border: none;
+    border-radius: 0px;
+    box-shadow: 0 0 0px 0 rgba(0, 0, 0, 0.2), 0 3px 5px 0 rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    white-space: normal;
+    text-align: center;
+}
+.h-option-btn:hover{
+    background-color: #ca0277;   
+}
+img.avatar{
+    width: 40%;
+}
+.vertically-align{
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.logo
+{
+    width: 40%;
+    padding-bottom: 5%;
+}
+.brand-img{
+    margin-top: -3px;
+    max-width: 132px;
+}
+.card{
+    text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    padding: 5%;
+    
+}
+.h-card-title{
+    min-height:40px;
+    color: #99999c;
+}
+.h-footer{
+    text-align: center;
+    position: fixed;
+    height:35px;
+    background:#f8f8f8;
+    padding-top:7px;
+    margin-bottom:0px !important;
+    
+    border-top: 2px solid transparent;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 0px ;
+    -moz-border-image: -moz-linear-gradient(right, #0080c7, #ee028b); 
+    -webkit-border-image: -webkit-linear-gradient(left, #0080c7 , #ee028b); 
+    border-image: -o-linear-gradient(right, #0080c7, #ee028b);
+    border-image: linear-gradient(to right, #0080c7 , #ee028b);
+    border-image-slice: 1;
+}
+  .h-textbox input {
+   
+    border-bottom: 1px solid #999999;
+    outline: 0;
+    background-color:  rgba(0,0,0,.0001);
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    box-shadow: none;
+ }
+.h-footer p{
+margin: 0 0 0 0;
+    color: #99999c;
+}
+#datepicker{
+    display: block;
+    margin-bottom: 14px;
+}
+.h-no-margin{
+    margin: 0 0 0 0;
+}
+.center-align{
+    text-align: center;
+}
+.h-margin-top{
+    margin-top: 11%;
+}
+
+/*slider*/
+
+/* carousel */
+.media-carousel 
+{
+  margin-bottom: 0;
+  padding: 0 40px 30px 40px;
+  margin-top: 30px;
+  width: 100%;
+}
+body .container
+{
+    width: 100%;
+    margin: auto;
+}
+/* Previous button  */
+.media-carousel .carousel-control.left 
+{
+  left: -12px;
+  background-image: none;
+  background: none repeat scroll 0 0 #222222;
+  border: 1px solid #FFFFFF;
+  border-radius: 20px;
+  height: 30px;
+  width : 60px;
+  margin-top: 30px
+  margin-left:15px;
+}
+/* Next button  */
+.media-carousel .carousel-control.right 
+{
+  right: -12px !important;
+  background-image: none;
+  background: none repeat scroll 0 0 #222222;
+  border: 1px solid #FFFFFF;
+  border-radius: 20px;
+  height: 120px;
+  width : 60px;
+  margin-top: 30px;
+  margin-right: -15px;
+}
+/* Changes the position of the indicators */
+.media-carousel .carousel-indicators 
+{
+  right: 50%;
+  top: auto;
+  bottom: 0px;
+  margin-right: -19px;
+}
+/* Changes the colour of the indicators */
+.media-carousel .carousel-indicators li 
+{
+  background: #c0c0c0;
+}
+.media-carousel .carousel-indicators .active 
+{
+  background: #333333;
+}
+.media-carousel img
+{
+  width: 100%;
+  height: 20px;
+}
+/* End carousel */
+
+/*end of slider*/
+
+
+/*bootstrap overriding*/
+.img-thumbnail{
+    margin-bottom: 15px
+}
+select{
+    max-width: 80px;
+    min-width: 80px;
+    margin-right: 2px;
+}
+.navbar{
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 2px solid transparent;
+    -moz-border-image: -moz-linear-gradient(right, #0080c7, #ee028b); 
+    -webkit-border-image: -webkit-linear-gradient(left, #0080c7 , #ee028b); 
+    border-image: -o-linear-gradient(right, #0080c7, #ee028b);
+    border-image: linear-gradient(to right, #0080c7 , #ee028b);
+    border-image-slice: 1;
+   
+  
+    
+}
+.navbar-toggle{
+    margin-top: 17px;
+}
+.navbar-default .navbar-toggle {
+    border: none;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #0080c7;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #99999c;
+}
+    .navbar-header {
+        float: none;
+        height:66px;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none;
+        margin: 7.5px -15px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+.navbar-collapse.collapse.in{
+    display: block!important;
+}
+.navbar-collapse {
+    border-top: 0px !important;
+    box-shadow: none !important;
+} 
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.panel{
+    border: none;
+    background-color: #eaebed;
+    padding-bottom: 8%;
+    overflow: hidden !important;
+    margin-bottom: 0px;
+}
+input{
+    border-radius: 0px !important;
+}
+.panel-primary>.panel-heading {
+    background-color: #0080c7 !important;
+    
+}
+@media screen and (min-width: 0px) {
+    .navbar-nav {
+        float: right !important;
+        margin: 7.5px -15px;
+    }
+}
+@media only screen and (min-width: 841px)
+.mdl-stepper--horizontal .mdl-step > .mdl-step__actions {
+    top: calc(100% - 130px) !important;
+}
+@media only screen and (min-width: 841px)
+.stepper-height {
+    
+    min-height: 500px !important;
+}
+#next,#cancel{
+ margin-bottom: 5px;
+}
+#cancel{
+    background-color: #999;
+}
+#editprofile{
+        margin-bottom: 50px;
+    padding: 0 0 12px 0px;
+}
+.mdl-step__label{
+    top:-24px !important;
+}
+.subtext{
+    color: grey;
+}
+/*bootstrap overriding*/
+
+/*other styles*/
+html{
+  position:relative; 
+  min-height: 100%;
+}
+.mdl-stepper > .mdl-step > .mdl-step__content {
+     background-color: white !important;
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
+    
+}
