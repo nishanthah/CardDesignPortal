@@ -17,7 +17,7 @@ export class AuthenticationService {
         let body = urlSearchParams.toString();
         let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post(this.common.getApiHostAddress() + "api/Authenticity", body, options).toPromise()
+        return this.http.post(this.common.getApiHostAddress() + "api/AuthToken", body, options).toPromise()
             .then(function (response) {
                 var result = response.json();
                 return result;

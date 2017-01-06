@@ -15,24 +15,21 @@ using Microsoft.Extensions.Options;
 using WebApiJwtAuthDemo.Options;
 using System.IdentityModel.Tokens.Jwt;
 
-
-
-
 namespace Card.Controllers
 {
-    [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true, Duration = -1)]
-    public class AuthenticityController : Controller
+    [Route("api/[action]")]
+    public class AuthenticationController : Controller
     {
         private readonly JwtIssuerOptions _jwtOptions;
         private readonly ILogger _logger;
         private readonly JsonSerializerSettings _serializerSettings;
 
-        public AuthenticityController(IOptions<JwtIssuerOptions> jwtOptions, ILoggerFactory loggerFactory)
+        public AuthenticationController(IOptions<JwtIssuerOptions> jwtOptions, ILoggerFactory loggerFactory)
         {
             _jwtOptions = jwtOptions.Value;
             ThrowIfInvalidOptions(_jwtOptions);
 
-            _logger = loggerFactory.CreateLogger<AuthenticityController>();
+            _logger = loggerFactory.CreateLogger<AuthenticationController>();
 
             _serializerSettings = new JsonSerializerSettings
             {
@@ -42,8 +39,7 @@ namespace Card.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [Route("api/Authenticity")]
-        public async Task<IActionResult> authToken([FromForm]LoginEntity loginObj)
+        public async Task<IActionResult> AuthToken([FromForm]LoginEntity loginObj)
         {
             var identity = await GetClaimsIdentity(loginObj);
             if (identity == null)
@@ -58,7 +54,6 @@ namespace Card.Controllers
         new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64),
         identity.FindFirst("PortalCharacter")
       };
-
             // Create the JWT security token and encode it.
             var jwt = new JwtSecurityToken(
                 issuer: _jwtOptions.Issuer,
@@ -81,15 +76,6 @@ namespace Card.Controllers
             return new OkObjectResult(json);
 
         }
-
-        // private string GenerateToken()
-        // {
-        //     byte[] time = BitConverter.GetBytes(DateTime.UtcNow.ToBinary());
-        //     byte[] key = Guid.NewGuid().ToByteArray();
-        //     string tokensss = Convert.ToBase64String(time.Concat(key).ToArray());
-        //     return tokensss;
-        // }
-
         private static void ThrowIfInvalidOptions(JwtIssuerOptions options)
         {
             if (options == null) throw new ArgumentNullException(nameof(options));
@@ -121,7 +107,6 @@ namespace Card.Controllers
         /// </summary>
         private static Task<ClaimsIdentity> GetClaimsIdentity(LoginEntity user)
         {
-
             try
             {
                 int count = 0;
@@ -136,8 +121,6 @@ namespace Card.Controllers
                 }
                 if (count > 0)
                 {
-
-
                     return Task.FromResult(new ClaimsIdentity(new GenericIdentity(user.username, "Token"),
                           new[]
                           {
@@ -146,9 +129,9 @@ namespace Card.Controllers
                 }
                 else
                 {
-                //     return Task.FromResult(new ClaimsIdentity(new GenericIdentity(user.username, "Token"),
-                //   new Claim[] { }));
-                Task.FromResult<ClaimsIdentity>(null);
+                    //     return Task.FromResult(new ClaimsIdentity(new GenericIdentity(user.username, "Token"),
+                    //   new Claim[] { }));
+                    Task.FromResult<ClaimsIdentity>(null);
                 }
             }
             catch (MySqlException ex)
@@ -158,7 +141,5 @@ namespace Card.Controllers
             // Credentials are invalid, or account doesn't exist
             return Task.FromResult<ClaimsIdentity>(null);
         }
-
     }
-
 }

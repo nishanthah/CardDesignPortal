@@ -17,6 +17,7 @@ namespace Card.Controllers
         [Route("api/UserDetails/id")]
         public string UserById([FromBody] UserEntity user)
         {
+            
             UserEntity userAsigned = null;
 
             try
@@ -42,7 +43,6 @@ namespace Card.Controllers
                             dataReader["file"].ToString()
                             );
                     }
-
                 }
             }
             catch (Exception e)
