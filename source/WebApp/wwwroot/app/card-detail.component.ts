@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpRequestCardService } from "./request-card-service";
-import { userService } from "./user.service";
+import { UserService } from "./user.service";
 import { CardRequest } from './Request-Card';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
@@ -13,7 +13,7 @@ declare var componentHandler: any;
     selector: 'card-detail',
     templateUrl: 'app/card-detail.component.html',
     providers: [
-        HttpRequestCardService, userService
+        HttpRequestCardService, UserService
     ]
 })
 export class CardDetailComponent extends OnInit implements AfterViewInit {
@@ -31,7 +31,7 @@ export class CardDetailComponent extends OnInit implements AfterViewInit {
 
     constructor(
         private _service: HttpRequestCardService,
-        private _userService: userService,
+        private _userService: UserService,
         private router: Router,
         private commonService: CommonService) {
 

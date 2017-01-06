@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
             .then(function (result) {
                 if (result != null) {
                     currentObj.commonService.setToken(result.access_token);
-                    currentObj.router.navigate(['/profile']);
+                    currentObj.router.navigate(['/user']);
                 }
                 else if (username == null || username == "") {
                     currentObj.error = 'You must enter username.';

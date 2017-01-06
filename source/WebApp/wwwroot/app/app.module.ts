@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login.component';
 import { RequestCardComponent } from './request-card.component';
 import { WelcomeComponent } from './welcome.component';
-import { ProfileComponent } from './profile.component';
 import { CardDetailComponent } from './card-detail.component';
 import { FinalComponent } from './final.component';
 import { AuthenticationService } from './authentication.service';
@@ -17,7 +16,7 @@ import { ReprintFinalCardComponent } from './reprint-final.component';
 import { HttpRequestCardService } from "./request-card-service";
 import { CommonService } from "./common.service";
 import { EqualValidator } from './equal-validator.directive';
-
+import { UserComponent } from './user.component';
 
 import { ForgotPassword } from "./forgot-password.component";
 @NgModule({
@@ -40,8 +39,8 @@ import { ForgotPassword } from "./forgot-password.component";
 
             },
             {
-                path: 'profile',
-                component: ProfileComponent
+                path: 'user',
+                component: UserComponent
             },
             {
                 path: 'card_detail',
@@ -71,7 +70,7 @@ import { ForgotPassword } from "./forgot-password.component";
         LoginComponent,
         RequestCardComponent,
         WelcomeComponent,
-        ProfileComponent,
+        UserComponent,
         CardDetailComponent,
         FinalComponent,
         ReprintCardComponent,

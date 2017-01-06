@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Headers, RequestOptions } from '@angular/http';
 
 @Injectable()
 export class CommonService {
@@ -6,10 +7,12 @@ export class CommonService {
     private cardHolderName: string;
     private cardTemplateUrl: string;
     private userToken: string;
-    private hostAddress: string;
+    private apihostAddress: string;
+    private webAppHostAddress: string;
 
     constructor() {
-        this.hostAddress = "http://localhost:4040/";
+        this.apihostAddress = "http://localhost:4040/";
+        this.webAppHostAddress = "http://localhost:5000/";
     }
 
     setCardHolderName(name: string) {
@@ -36,7 +39,13 @@ export class CommonService {
         return "Bearer " + this.userToken;
     }
 
-    getHostAddress() {
-        return this.hostAddress;
+    getApiHostAddress() {
+        return this.apihostAddress;
+    }
+
+    getHeaderOption() {
+        let headers = new Headers({ 'Authorization': this.getToken() });
+        let options = new RequestOptions({ headers: headers });
+        return options;
     }
 }

@@ -39,6 +39,7 @@ namespace Card.Controllers
                 Formatting = Formatting.Indented
             };
         }
+
         [HttpPost]
         [AllowAnonymous]
         [Route("api/Authenticity")]
@@ -55,7 +56,7 @@ namespace Card.Controllers
         new Claim(JwtRegisteredClaimNames.Sub, loginObj.username),
         new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
         new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64),
-        identity.FindFirst("DisneyCharacter")
+        identity.FindFirst("PortalCharacter")
       };
 
             // Create the JWT security token and encode it.
@@ -140,7 +141,7 @@ namespace Card.Controllers
                     return Task.FromResult(new ClaimsIdentity(new GenericIdentity(user.username, "Token"),
                           new[]
                           {
-                    new Claim("DisneyCharacter", "IAmMickey")
+                    new Claim("PortalCharacter", "cardPortalKey")
                           }));
                 }
                 else
