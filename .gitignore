@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/source/Api/.vscode/tasks.json
+/source/Api/.vscode/launch.json
+/source/WebApp/.vscode/tasks.json
+/source/WebApp/.vscode/launch.json
+/source/Api/bin/Debug/netcoreapp1.0
+/source/Api/obj/Debug/netcoreapp1.0
