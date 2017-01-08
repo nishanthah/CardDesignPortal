@@ -6,7 +6,8 @@ namespace Card.Models
     {
         void Add(T item);
         IEnumerable<T> GetAll();
-        T Find(int id, string accuntNo = null);
+        T Find(int id, string cardNo = null);
+        T Find(int id);
         T Remove(int id);
         void Update(T item);
     }

@@ -3,7 +3,7 @@ using MySql.Data.MySqlClient;
 
 namespace Db.Mysql
 {
-    public class DbConnect:IDisposable
+    public class DbConnect : IDisposable
     {
         // Database connection details
         // Database hosting server ip/name
@@ -74,11 +74,11 @@ namespace Db.Mysql
             // Close the connection between application and database
             if (connection != null)
                 connection.Close();
-        }        
+        }
         public void Dispose()
         {
             // Close the connection when disposing the DbConnect object
-            CloseConnection();           
+            CloseConnection();
         }
     }
 }
