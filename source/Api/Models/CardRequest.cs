@@ -1,6 +1,6 @@
 using System;
 
-namespace Card.Model
+namespace Card.Models
 {
     public class CardRequest
     {

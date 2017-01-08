@@ -1,4 +1,4 @@
-namespace Card.Model
+namespace Card.Models
 {
     public class UserDetail
     {
