@@ -8,3 +8,9 @@
 /source/WebApp/.vscode/launch.json
 /source/Api/bin/Debug/netcoreapp1.0
 /source/Api/obj/Debug/netcoreapp1.0
+/source/WebApp/wwwroot/app/bundle.js.map
+/source/WebApp/wwwroot/app/bundle.js
+/source/WebApp/wwwroot/js/zone.js
+/source/WebApp/wwwroot/js/system.js
+/source/WebApp/wwwroot/js/reflect.js
+/source/WebApp/wwwroot/js/core.js
