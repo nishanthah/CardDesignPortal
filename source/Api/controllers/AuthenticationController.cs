@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using WebApiJwtAuthDemo.Options;
 using System.IdentityModel.Tokens.Jwt;
+using Card.Models;
 
 namespace Card.Controllers
 {
@@ -23,9 +24,11 @@ namespace Card.Controllers
         private readonly JwtIssuerOptions _jwtOptions;
         private readonly ILogger _logger;
         private readonly JsonSerializerSettings _serializerSettings;
+        private static IDbRepository<User> UserDbRepository { get; set; }
 
-        public AuthenticationController(IOptions<JwtIssuerOptions> jwtOptions, ILoggerFactory loggerFactory)
+        public AuthenticationController(IOptions<JwtIssuerOptions> jwtOptions, ILoggerFactory loggerFactory, IDbRepository<User> iDbRepository = null)
         {
+            UserDbRepository = iDbRepository;
             _jwtOptions = jwtOptions.Value;
             ThrowIfInvalidOptions(_jwtOptions);
 
@@ -39,17 +42,17 @@ namespace Card.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> AuthToken([FromForm]LoginEntity loginObj)
+        public async Task<IActionResult> AuthToken([FromForm]User loginObj)
         {
             var identity = await GetClaimsIdentity(loginObj);
             if (identity == null)
             {
-                _logger.LogInformation($"Invalid username ({loginObj.username}) or password ({loginObj.password})");
+                _logger.LogInformation($"Invalid username ({loginObj.UserName}) or password ({loginObj.Password})");
                 return BadRequest("Invalid credentials");
             }
             var claims = new[]
             {
-        new Claim(JwtRegisteredClaimNames.Sub, loginObj.username),
+        new Claim(JwtRegisteredClaimNames.Sub, loginObj.Password),
         new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
         new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64),
         identity.FindFirst("PortalCharacter")
@@ -105,41 +108,67 @@ namespace Card.Controllers
         /// You'd want to retrieve claims through your claims provider
         /// in whatever way suits you, the below is purely for demo purposes!
         /// </summary>
-        private static Task<ClaimsIdentity> GetClaimsIdentity(LoginEntity user)
+        private static Task<ClaimsIdentity> GetClaimsIdentity(User user)
         {
             try
             {
-                int count = 0;
-                using (DbConnect connect = new DbConnect())
-                {
-                    MySqlDataReader reader = connect.MysqlExecuteQuery("select * from user where (username ='" + user.username + "' && password ='" + user.password + "' )");
+                IEnumerable<User> userDetailsList = UserDbRepository.GetAll();
+                User existingUser = userDetailsList.Where(x => x.UserName == user.UserName).Where(x => x.Password == user.Password).FirstOrDefault();
 
-                    while (reader.Read())
-                    {
-                        count++;
-                    }
-                }
-                if (count > 0)
+                if (existingUser != null)
                 {
-                    return Task.FromResult(new ClaimsIdentity(new GenericIdentity(user.username, "Token"),
-                          new[]
-                          {
+                    return Task.FromResult(new ClaimsIdentity(new GenericIdentity(user.UserName, "Token"),
+                  new[]
+                  {
                     new Claim("PortalCharacter", "cardPortalKey")
-                          }));
+                  }));
                 }
                 else
                 {
-                    //     return Task.FromResult(new ClaimsIdentity(new GenericIdentity(user.username, "Token"),
-                    //   new Claim[] { }));
-                    Task.FromResult<ClaimsIdentity>(null);
+                    return Task.FromResult<ClaimsIdentity>(null);
                 }
             }
-            catch (MySqlException ex)
+            catch (MySqlException mySqlException)
             {
-                Task.FromResult<ClaimsIdentity>(null);
+                return Task.FromResult<ClaimsIdentity>(null);
             }
+
+
+
+
+            // try
+            // {
+            //     int count = 0;
+            //     using (DbConnect connect = new DbConnect())
+            //     {
+            //         MySqlDataReader reader = connect.MysqlExecuteQuery("select * from user where (username ='" + user.username + "' && password ='" + user.password + "' )");
+
+            //         while (reader.Read())
+            //         {
+            //             count++;
+            //         }
+            //     }
+            //     if (count > 0)
+            //     {
+            //         return Task.FromResult(new ClaimsIdentity(new GenericIdentity(user.username, "Token"),
+            //               new[]
+            //               {
+            //         new Claim("PortalCharacter", "cardPortalKey")
+            //               }));
+            //     }
+            //     else
+            //     {
+            //         //     return Task.FromResult(new ClaimsIdentity(new GenericIdentity(user.username, "Token"),
+            //         //   new Claim[] { }));
+            //         Task.FromResult<ClaimsIdentity>(null);
+            //     }
+            // }
+            // catch (MySqlException ex)
+            // {
+            //     Task.FromResult<ClaimsIdentity>(null);
+            // }
             // Credentials are invalid, or account doesn't exist
-            return Task.FromResult<ClaimsIdentity>(null);
+            //return Task.FromResult<ClaimsIdentity>(null);
         }
     }
 }

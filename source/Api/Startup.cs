@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
 using WebApiJwtAuthDemo.Options;
+using Card.Models;
 
 namespace WebCore.API
 {
@@ -40,6 +41,11 @@ namespace WebCore.API
                       .AllowAnyHeader();
                   }));
             services.AddMvc();
+            
+            services.AddSingleton(typeof(IDbRepository<User>),typeof(UserRepository));
+            services.AddSingleton(typeof(IDbRepository<UserDetail>),typeof(UserDetailRepository));
+            services.AddSingleton(typeof(IDbRepository<CardRequest>),typeof(CardRequestRepository));
+            services.AddSingleton(typeof(IDbRepository<CardTemplate>),typeof(CardTemplateRepository));
             // Add framework services.
             services.AddOptions();
 
