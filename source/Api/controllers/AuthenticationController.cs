@@ -113,7 +113,11 @@ namespace Card.Controllers
             try
             {
                 IEnumerable<User> userDetailsList = UserDbRepository.GetAll();
-                User existingUser = userDetailsList.Where(x => x.UserName == user.UserName).Where(x => x.Password == user.Password).FirstOrDefault();
+                User existingUser = userDetailsList
+                .Where(x => x.UserName == user.UserName)
+                .Where(x => x.Password == user.Password)
+                .Where(x => x.IsActive == true)
+                .FirstOrDefault();
 
                 if (existingUser != null)
                 {
