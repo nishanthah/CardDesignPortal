@@ -79,6 +79,7 @@ namespace Card.Controllers
             return new OkObjectResult(json);
 
         }
+        
         private static void ThrowIfInvalidOptions(JwtIssuerOptions options)
         {
             if (options == null) throw new ArgumentNullException(nameof(options));
@@ -136,43 +137,6 @@ namespace Card.Controllers
             {
                 return Task.FromResult<ClaimsIdentity>(null);
             }
-
-
-
-
-            // try
-            // {
-            //     int count = 0;
-            //     using (DbConnect connect = new DbConnect())
-            //     {
-            //         MySqlDataReader reader = connect.MysqlExecuteQuery("select * from user where (username ='" + user.username + "' && password ='" + user.password + "' )");
-
-            //         while (reader.Read())
-            //         {
-            //             count++;
-            //         }
-            //     }
-            //     if (count > 0)
-            //     {
-            //         return Task.FromResult(new ClaimsIdentity(new GenericIdentity(user.username, "Token"),
-            //               new[]
-            //               {
-            //         new Claim("PortalCharacter", "cardPortalKey")
-            //               }));
-            //     }
-            //     else
-            //     {
-            //         //     return Task.FromResult(new ClaimsIdentity(new GenericIdentity(user.username, "Token"),
-            //         //   new Claim[] { }));
-            //         Task.FromResult<ClaimsIdentity>(null);
-            //     }
-            // }
-            // catch (MySqlException ex)
-            // {
-            //     Task.FromResult<ClaimsIdentity>(null);
-            // }
-            // Credentials are invalid, or account doesn't exist
-            //return Task.FromResult<ClaimsIdentity>(null);
         }
     }
 }
