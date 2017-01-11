@@ -18,7 +18,7 @@ namespace Card.Models
             {
                 using (DbConnect connect = new DbConnect())
                 {
-                    string query = "INSERT INTO user_details (id,first_name,last_name,phone_number,email_address,mailling_address,town,cif,date_of_birth,account_branch,image)VALUES ("
+                    string query = "INSERT INTO user_detail (id,first_name,last_name,phone_number,email_address,mailling_address,town,cif,date_of_birth,account_branch,image)VALUES ("
                     + "1" + ",'"
                     + userDetail.FirstName + "','"
                     + userDetail.LastName + "','"
@@ -128,7 +128,7 @@ namespace Card.Models
             {
                 using (DbConnect connect = new DbConnect())
                 {
-                    string query = "update user_details set (" +
+                    string query = "update user_detail set " +
                     "id=" + userDetail.Id +
                     ",first_name='" + userDetail.FirstName +
                     "',last_name='" + userDetail.LastName +
@@ -140,7 +140,7 @@ namespace Card.Models
                     "',date_of_birth='" + userDetail.DateOfBirth +
                     "',account_branch='" + userDetail.AccountBranch +
                     "',image='" + userDetail.Image +
-                    "')";
+                    "' where id=" +userDetail.Id;
                     connect.MysqlExecuteNonQuery(query);
                 }
             }

@@ -16,18 +16,17 @@ export class UserService {
 
     UserData(fName, lName, code, phoneNum, emailAddress, address, town, cif, dob, accBranch, file) : Observable<boolean>{
         var currentObj = this;
-        return this.http.post(this.commonService.getApiHostAddress() + 'api/UserDetails', {
-            "fName": fName,
-            "lName": lName,
-            "code": code,
-            "phoneNum": phoneNum,
-            "emailAddress": emailAddress,
-            "address": address,
-            "town": town,
-            "cif": cif,
-            "dob": dob,
-            "accBranch": accBranch,
-            "file": file
+        return this.http.post(this.commonService.getApiHostAddress() + 'api/User', {
+            "FirstName": fName,
+            "LastName": lName,
+            "PhoneNumber": phoneNum,
+            "EmailAddress": emailAddress,
+            "MaillingAddress": address,
+            "Town": town,
+            "Cif": cif,
+            "DateOfBirth": dob,
+            "AccountBranch": accBranch,
+            "Image": file
         },
             this.commonService.getHeaderOption()
         ).map((response: Response) => {            
