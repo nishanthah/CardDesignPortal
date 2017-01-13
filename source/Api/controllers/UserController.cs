@@ -9,7 +9,7 @@ using Card.Models;
 
 namespace Card.Controllers
 {
-    [Route("api/[action]")]
+    [Route("api/[action]")] 
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true, Duration = -1)]
     public class UserController : Controller
     {
