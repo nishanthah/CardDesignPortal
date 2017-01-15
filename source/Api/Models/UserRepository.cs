@@ -42,6 +42,7 @@ namespace Card.Models
                 using (DbConnect connect = new DbConnect())
                 {
                     MySqlDataReader dataReader = connect.MysqlExecuteQuery("SELECT * FROM user where id=" + user.Id);
+                    dataReader.Read();
                     user = new User()
                     {
                         Id = Convert.ToInt32(dataReader["id"].ToString()),
