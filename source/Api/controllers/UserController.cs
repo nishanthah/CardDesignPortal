@@ -19,12 +19,12 @@ namespace Card.Controllers
 
         [HttpPost]
         [Authorize(Policy = "PortalUser")]
-        public IActionResult UserById([FromBody] int id)
+        public IActionResult UserById([FromBody] UserDetail userDetail)
         {
             try
             {
                 
-                return Ok(this.UserDetailDbRepository.Find(id));
+                return Ok(this.UserDetailDbRepository.Find(userDetail.Id));
             }
             catch (MySqlException mySqlException)
             {
