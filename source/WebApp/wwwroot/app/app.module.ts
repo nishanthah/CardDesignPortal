@@ -13,7 +13,7 @@ import { FinalComponent } from './final.component';
 import { AuthenticationService } from './authentication.service';
 import { ReprintCardComponent } from './reprint.component';
 import { ReprintFinalCardComponent } from './reprint-final.component';
-import { HttpRequestCardService } from "./request-card-service";
+import { RequestCardService } from "./request-card-service";
 import { CommonService } from "./common.service";
 import { EqualValidator } from './equal-validator.directive';
 import { UserComponent } from './user.component';
@@ -80,7 +80,7 @@ import { ForgotPassword } from "./forgot-password.component";
     ],
     providers: [
         AuthenticationService,
-        HttpRequestCardService,
+        RequestCardService,
         CommonService
     ],
     bootstrap: [AppComponent]
