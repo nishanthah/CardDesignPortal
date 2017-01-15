@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Db.Mysql;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
@@ -9,7 +8,6 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 using System.Security.Principal;
 using Microsoft.AspNetCore.Authorization;
-using Card.Entity;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using WebApiJwtAuthDemo.Options;

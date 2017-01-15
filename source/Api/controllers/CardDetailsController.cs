@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Db.Mysql;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
