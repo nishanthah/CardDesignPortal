@@ -10,6 +10,8 @@ export class CommonService {
     private apihostAddress: string;
     private webAppHostAddress: string;
 
+    private imageList: string[];
+
     constructor() {
         this.apihostAddress = "http://localhost:4040/";
         this.webAppHostAddress = "http://localhost:5000/";
@@ -47,5 +49,9 @@ export class CommonService {
         let headers = new Headers({ 'Authorization': this.getToken() });
         let options = new RequestOptions({ headers: headers });
         return options;
+    }
+
+    getCardTemplateList(){
+        return this.imageList;
     }
 }

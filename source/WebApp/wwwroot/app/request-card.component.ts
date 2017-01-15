@@ -28,6 +28,12 @@ export class RequestCardComponent implements AfterViewInit {
     constructor(private router: Router, private commonService: CommonService) {
         this.requestCardModel = new RequestCardModel();
         this.requestCardModel.cardTemplateUrl = this.imageList[0];
+        if (this.commonService.getCardTemplateUrl() != null) {
+            this.requestCardModel.cardTemplateUrl = this.commonService.getCardTemplateUrl();
+        }
+        if (this.commonService.getCardHolderName() != null) {
+            this.requestCardModel.cardHolderName = this.commonService.getCardHolderName();
+        }
     }
     ngAfterViewInit() {
         componentHandler.upgradeAllRegistered();
@@ -53,6 +59,7 @@ export class RequestCardComponent implements AfterViewInit {
         } else if (cardHolderName.length == 0) {
             this.active = true;
         } else {
+            this.requestCardModel.cardHolderName = cardHolderName;
             this.active = false;
         }
     }
