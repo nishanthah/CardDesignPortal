@@ -67,7 +67,7 @@ export class CardDetailComponent extends OnInit implements AfterViewInit {
     }
 
     Submit(): void {
-        alert("card Holder Name:" + this.cardHolderName);
+        this.router.navigate(['/final']);
     }
 
     ngAfterViewInit() {
