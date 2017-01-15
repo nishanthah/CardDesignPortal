@@ -47,7 +47,7 @@ namespace Card.Models
                         Id = Convert.ToInt32(dataReader["id"].ToString()),
                         UserName = dataReader["username"].ToString(),
                         Password = dataReader["password"].ToString(),
-                        IsActive = Convert.ToBoolean(dataReader["is_active"].ToString()),
+                        IsActive = dataReader["is_active"].ToString().Equals("1") ? true : false,
                         NoOfAttempt = Convert.ToInt32(dataReader["no_of_attempt"].ToString()),
                         ResetCode = dataReader["reset_code"].ToString()
                     };
@@ -82,7 +82,7 @@ namespace Card.Models
                             Id = Convert.ToInt32(dataReader["id"].ToString()),
                             UserName = dataReader["username"].ToString(),
                             Password = dataReader["password"].ToString(),
-                            IsActive = dataReader["is_active"].ToString().Equals("49") ? true : false,
+                            IsActive = dataReader["is_active"].ToString().Equals("1") ? true : false,
                             NoOfAttempt = Convert.ToInt32(dataReader["no_of_attempt"].ToString()),
                             ResetCode = dataReader["reset_code"].ToString()
                         };
