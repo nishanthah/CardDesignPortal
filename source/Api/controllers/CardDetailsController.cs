@@ -5,35 +5,30 @@ using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using Card.Entity;
 using Newtonsoft.Json;
+using Card.Models;
 namespace Card.Controllers
 {
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true, Duration = -1)]
+    [Route("api/CardRequest/id")]
     public class CardController : Controller
     {
+        private static IDbRepository<CardRequest> CardRequestDbRepository { get; set; }
         [HttpPost]
-        [Route("api/CardRequest/id")]
-        public string CardRequestWithID([FromBody] CardRequest cardRequest)
+        public IActionResult CardRequestWithID([FromBody] CardRequest cardRequest, IDbRepository<CardRequest> iDbRepository = null)
         {
 
             CardRequest cardRequestAsigned = null;
             
             try
             {
-                using (DbConnect connect = new DbConnect())
-                {
-                    MySqlDataReader dataReader = connect.MysqlExecuteQuery("SELECT * FROM card_request where id=" + cardRequest.Id + ";");
+                IEnumerable<CardRequest> cardDetailsList = CardRequestDbRepository.GetAll();
+                cardRequest cardDetails = cardDetailsList.Where(x=>x.Id == cardRequest.Id).FirstOrDefault();
 
-                    while (dataReader.Read())
-                    {
-                        cardRequestAsigned = new CardRequest(Convert.ToInt32(dataReader["id"].ToString()), Convert.ToInt32(dataReader["card_no"].ToString()), Convert.ToInt32(dataReader["template_id"].ToString()), dataReader["card_holder_name"].ToString(), dataReader["expire_date"].ToString());
-                        // requestCardDetails.Add(new CardRequest(Convert.ToInt32(dataReader["id"].ToString()), Convert.ToInt32(dataReader["card_no"].ToString()), Convert.ToInt32(dataReader["template_id"].ToString()), dataReader["card_holder_name"].ToString(), dataReader["expire_date"].ToString()));
-                    }
-
-                }
+                Ok(cardDetails);
             }
             catch (Exception e)
             {
-
+                return BadRequest(mySqlException.Message);
             }
 
             return JsonConvert.SerializeObject(new RequestResult
@@ -53,7 +48,6 @@ namespace Card.Controllers
         }
 
         [HttpPost]
-        [Route("api/CardRequest")]
         public bool CardRequest([FromBody]CardRequest cardRequest)
         {
 
@@ -72,25 +66,5 @@ namespace Card.Controllers
             }
             return true;
         }
-
-
     }
-
-    public class CardRequest
-    {
-        public CardRequest(int id, int cardNo, int templateId, string cardHolderName, string expireDate)
-        {
-            this.Id = id;
-            this.CardNo = cardNo;
-            this.TemplateId = templateId;
-            this.CardHoldeName = cardHolderName;
-            this.ExpireDate = expireDate;
-        }
-        public int Id { get; set; }
-        public int CardNo { get; set; }
-        public int TemplateId { get; set; }
-        public string CardHoldeName { get; set; }
-        public string ExpireDate { get; set; }
-    }
-
 }
