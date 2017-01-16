@@ -74,7 +74,7 @@
                     </div>
                     <div class="form-group h-textbox">
                       <label for="cardHolderName">Card Display Name</label>
-                      <input type="text" required #cardHolderName="ngModel" [(ngModel)]="cardHolder" maxlength="20" class="form-control" placeholder="Name"
+                      <input type="text" required #cardHolderName="ngModel" [(ngModel)]="requestCardModel.cardHolderName" maxlength="20"  class="form-control" placeholder="Name"
                         name="cardHolderName" id="cardHolderName" (keypress)="onTextChange(cardHolderName.value)">
                       <div [hidden]="!active"  class="alert alert-danger">Name is required
                       </div>

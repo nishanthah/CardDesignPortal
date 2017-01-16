@@ -38,7 +38,9 @@ namespace Card.Models
             {
                 using (DbConnect connect = new DbConnect())
                 {
+
                     MySqlDataReader dataReader = connect.MysqlExecuteQuery("SELECT * FROM card_template where id=" + cardTemplate.Id);
+                    dataReader.Read();
                     cardTemplate = new CardTemplate()
                     {
                         Id = Convert.ToInt32(dataReader["id"].ToString()),

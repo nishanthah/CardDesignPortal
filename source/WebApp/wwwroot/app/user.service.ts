@@ -14,7 +14,7 @@ export class UserService {
         private commonService: CommonService
     ) { }
 
-    UserData(fName, lName, code, phoneNum, emailAddress, address, town, cif, dob, accBranch, file) : Observable<boolean>{
+    UserData(fName, lName, code, phoneNum, emailAddress, address, town, cif, dob, accBranch, file): Observable<boolean> {
         var currentObj = this;
         return this.http.post(this.commonService.getApiHostAddress() + 'api/User', {
             "FirstName": fName,
@@ -29,7 +29,7 @@ export class UserService {
             "Image": file
         },
             this.commonService.getHeaderOption()
-        ).map((response: Response) => {            
+        ).map((response: Response) => {
             let user = response.json();
             return user;
         }).catch((error: Response | any) => {
@@ -42,14 +42,18 @@ export class UserService {
                 errMsg = error.message ? error.message : error.toString();
             }
             console.error(errMsg);
-            return Observable.throw(errMsg);            
+            return Observable.throw(errMsg);
         });
 
     }
 
     getUser(uId) {
 
-        return this.http.post("api/UserDetails/id", { Id: uId }).toPromise()
+        return this.http.post(
+            this.commonService.getApiHostAddress() + "api/UserById",
+            { "id": uId },
+            this.commonService.getHeaderOption()
+        ).toPromise()
             .then(function (response) {
                 var result = response.json();
                 return result;

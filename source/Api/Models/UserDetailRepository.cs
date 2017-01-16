@@ -47,7 +47,8 @@ namespace Card.Models
             {
                 using (DbConnect connect = new DbConnect())
                 {
-                    MySqlDataReader dataReader = connect.MysqlExecuteQuery("SELECT * FROM user_detail where id=" + userDetail.Id);
+                    MySqlDataReader dataReader = connect.MysqlExecuteQuery("SELECT * FROM user_detail where id=" + id);
+                    dataReader.Read();
                     userDetail = new UserDetail()
                     {
                         Id = Convert.ToInt32(dataReader["id"].ToString()),
@@ -140,7 +141,7 @@ namespace Card.Models
                     "',date_of_birth='" + userDetail.DateOfBirth +
                     "',account_branch='" + userDetail.AccountBranch +
                     "',image='" + userDetail.Image +
-                    "' where id=" +userDetail.Id;
+                    "' where id=" + userDetail.Id;
                     connect.MysqlExecuteNonQuery(query);
                 }
             }

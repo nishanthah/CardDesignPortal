@@ -42,37 +42,37 @@
       <ul class="mdl-stepper mdl-stepper--feedback mdl-stepper--horizontal stepper-height" id="demo-stepper-horizontal-linear-feedback"
         style="
     min-height: 480px;">
-        <span class="mdl-step__label">
+<span class="mdl-step__label">
               <span class="mdl-step__title">
                 <span class="mdl-step__title-text"><h4>NEW CARD</h4></span>
-        </span>
-        </span>
-        <li class="mdl-step" data-step-transient-message="Step 1 looks great! Step 2 is coming up.">
-          <span class="mdl-step__label" routerLink="/request_card">
+</span>
+</span>
+<li class="mdl-step" data-step-transient-message="Step 1 looks great! Step 2 is coming up.">
+  <span class="mdl-step__label" routerLink="/request_card">
           <span class="mdl-step__title">
             <span class="mdl-step__title-text">Customize Card</span>
-          </span>
-          </span>
+  </span>
+  </span>
 
-          <div class="mdl-step__content">
+  <div class="mdl-step__content">
 
-            <div class="col-md-offset-4 col-md-4 col-xs-12 h-margin-top">
-              <form>
-                <div class="form-group center-align">
-                  <h1>Thank You</h1>
-                </div>
-                <div class="form-group center-align">
-                  <h6>Your card delivery has been arranged.</h6>
-                </div>
-                <div class="form-group center-align">
-                  <a href="" routerLink="/welcome" class="btn btn-lg btn-primary h-option-btn btn-block">Home</a>
-                </div>
-              </form>
-            </div>
+    <div class="col-md-offset-4 col-md-4 col-xs-12 h-margin-top">
+      
+        <div class="form-group center-align">
+          <h1>Thank You</h1>
+        </div>
+        <div class="form-group center-align">
+          <h6>Your card delivery has been arranged.</h6>
+        </div>
+        <div class="form-group center-align">
+          <button (click)="onHomeClick()" class="btn btn-lg btn-primary h-option-btn btn-block">Home</button>
+        </div>
+      
+    </div>
 
-          </div>
-          <div class="mdl-step__actions">
-            <!-- <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" data-stepper-next>
+  </div>
+  <div class="mdl-step__actions">
+    <!-- <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" data-stepper-next>
             Continue
           </button>
               <button class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-cancel>
@@ -81,83 +81,75 @@
               <button disabled class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-back>
             Back
           </button>-->
-          </div>
-        </li>
-        <li class="mdl-step" data-step-transient-message="Step 2 looks great! Step 3 is coming up.">
-          <span class="mdl-step__label" routerLink="/card_detail">
+  </div>
+</li>
+<li class="mdl-step" data-step-transient-message="Step 2 looks great! Step 3 is coming up.">
+  <span class="mdl-step__label" routerLink="/card_detail">
           <span class="mdl-step__title">
             <span class="mdl-step__title-text">Card Details</span>
-          </span>
-          <span class="mdl-step__label-indicator">
+  </span>
+  <span class="mdl-step__label-indicator">
                 <span class="mdl-step__label-indicator-content" style="background-color:#1E90FF;border-radius: 50%;
     behavior: url(PIE.htc);">2</span>
-          </span>
-          </span>
-          <div class="mdl-step__content">
-            <div class="panel panel-primary">
+</span>
+</span>
+<div class="mdl-step__content">
+  <div class="col-md-offset-4 col-md-4 col-xs-12 h-margin-top">
+    
+      <div class="form-group center-align">
+        <h1>Thank You</h1>
+      </div>
+      <div class="form-group center-align">
+        <h6>Your card delivery has been arranged.</h6>
+      </div>
+      <div class="form-group center-align">
+        <button (click)="onHomeClick()" class="btn btn-lg btn-primary h-option-btn btn-block">Home</button>
+      </div>
+    
+  </div>
 
-              <div class="panel-body">
-                <div class="col-xs-12-col-sm-12 col-md-6">
-                  <form>
-                    <div class="form-group h-textbox">
-                      <label for="cardview">Your Card</label>
-                    </div>
-                  </form>
-                  <div class="container">
-                    <img class="img-responsive" src="images/6.jpg" alt="Chania" width="460" height="345">
-                  </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-6">
-                  <form>
-                    <div class="form-group h-textbox">
-                      <label for="edate">Expire Date</label>
-
-                    </div>
-                    <div class="form-group h-textbox">
-                      <label class="subtext" for="edatesub">{{expirationDate}}</label>
-                    </div>
-                    <div class="form-group h-textbox">
-                      <label for="address">Address</label>
-
-                    </div>
-                    <div class="form-group h-textbox">
-                      <label class="subtext" for="addresssub">{{mailingAddress}}</label>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-
-          </div>
-          <div class="mdl-step__actions">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" data-stepper-next>
+</div>
+<div class="mdl-step__actions">
+  <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" data-stepper-next>
             Continue
           </button>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-cancel>
+  <button class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-cancel>
             Cancel
           </button>
-            <button disabled class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-back>
+  <button disabled class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-back>
             Back
           </button>
-          </div>
-        </li>
-        <li class="mdl-step" data-step-transient-message="Step 3 looks great! Thanks.">
-          <span class="mdl-step__label" routerLink="/final">
+</div>
+</li>
+<li class="mdl-step" data-step-transient-message="Step 3 looks great! Thanks.">
+  <span class="mdl-step__label" routerLink="/final">
           <span class="mdl-step__title">
             <span class="mdl-step__title-text">Complete</span>
-          </span>
-          <span class="mdl-step__label-indicator">
+  </span>
+  <span class="mdl-step__label-indicator">
                 <span class="mdl-step__label-indicator-content" style="background-color:#1E90FF;border-radius: 50%;
     behavior: url(PIE.htc);">3</span>
-          </span>
-          </span>
-          <div class="mdl-step__content">
+</span>
+</span>
+<div class="mdl-step__content">
 
+  <div class="col-md-offset-4 col-md-4 col-xs-12 h-margin-top">
+    
+      <div class="form-group center-align">
+        <h1>Thank You</h1>
+      </div>
+      <div class="form-group center-align">
+        <h6>Your card delivery has been arranged.</h6>
+      </div>
+      <div class="form-group center-align">
+        <button (click)="onHomeClick()" class="btn btn-lg btn-primary h-option-btn btn-block">Home</button>
+      </div>
+    
+  </div>
 
-
-          </div>
-          <div class="mdl-step__actions">
-            <!-- <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" data-stepper-next>
+</div>
+<div class="mdl-step__actions">
+  <!-- <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" data-stepper-next>
             Continue
           </button>
               <button class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-cancel>
@@ -166,12 +158,12 @@
               <button disabled class="mdl-button mdl-js-button mdl-js-ripple-effect" data-stepper-back>
             Back
           </button>-->
-          </div>
-        </li>
-      </ul>
+</div>
+</li>
+</ul>
 
-    </div>
-  </div>
+</div>
+</div>
 
 </section>
 <div class="footer navbar-fixed-bottom h-footer">

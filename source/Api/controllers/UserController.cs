@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using Db.Mysql;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
-using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
 using Card.Models;
 
 namespace Card.Controllers
 {
-    [Route("api/[action]")]
+    [Route("api/[action]")] 
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true, Duration = -1)]
     public class UserController : Controller
     {
@@ -23,12 +19,12 @@ namespace Card.Controllers
 
         [HttpPost]
         [Authorize(Policy = "PortalUser")]
-        public IActionResult UserById([FromBody] int id)
+        public IActionResult UserById([FromBody] UserDetail userDetail)
         {
             try
             {
                 
-                return Ok(this.UserDetailDbRepository.Find(id));
+                return Ok(this.UserDetailDbRepository.Find(userDetail.Id));
             }
             catch (MySqlException mySqlException)
             {
