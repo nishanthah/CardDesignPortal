@@ -21,6 +21,7 @@ namespace Card.Controllers
     {
         private readonly JwtIssuerOptions _jwtOptions;
         private readonly ILogger _logger;
+        private static int userId;
         private readonly JsonSerializerSettings _serializerSettings;
         private static IDbRepository<User> UserDbRepository { get; set; }
 
@@ -50,7 +51,7 @@ namespace Card.Controllers
             }
             var claims = new[]
             {
-        new Claim(JwtRegisteredClaimNames.Sub, loginObj.Password),
+        new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()),
         new Claim(JwtRegisteredClaimNames.Jti, await _jwtOptions.JtiGenerator()),
         new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(_jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64),
         identity.FindFirst("PortalCharacter")
@@ -120,6 +121,7 @@ namespace Card.Controllers
 
                 if (existingUser != null)
                 {
+                    userId = existingUser.Id;
                     return Task.FromResult(new ClaimsIdentity(new GenericIdentity(user.UserName, "Token"),
                   new[]
                   {
