@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Headers, RequestOptions } from '@angular/http';
+import { JwtHelper } from 'angular2-jwt';
 
 @Injectable()
 export class CommonService {
@@ -35,6 +36,11 @@ export class CommonService {
 
     setToken(token: string) {
         this.userToken = token;
+    }
+
+    getUserIdToken(){
+        let jwtHelper = new JwtHelper();        
+        return jwtHelper.decodeToken(this.userToken).sub;
     }
 
     getToken() {

@@ -17,6 +17,7 @@ export class UserService {
     UserData(fName, lName, code, phoneNum, emailAddress, address, town, cif, dob, accBranch, file): Observable<boolean> {
         var currentObj = this;
         return this.http.post(this.commonService.getApiHostAddress() + 'api/User', {
+            "Id": this.commonService.getUserIdToken(),
             "FirstName": fName,
             "LastName": lName,
             "PhoneNumber": phoneNum,
