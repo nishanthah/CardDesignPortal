@@ -20,7 +20,7 @@ namespace Card.Controllers
         [HttpPost]
         [Authorize(Policy = "PortalUser")]
         public IActionResult UserById([FromBody] UserDetail userDetail)
-        {
+        {            
             try
             {
                 
@@ -35,10 +35,9 @@ namespace Card.Controllers
         [HttpPost]        
         [Authorize(Policy = "PortalUser")]
         public IActionResult User([FromBody] UserDetail userDetail)
-        {
+        {       
             try
             {
-                userDetail.Id = 1;
                 this.UserDetailDbRepository.Update(userDetail);
                 return Ok(true);
             }
