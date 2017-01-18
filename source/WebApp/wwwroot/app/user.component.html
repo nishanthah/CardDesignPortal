@@ -39,8 +39,9 @@
                 <div class="form-group h-no-margin h-textbox">
                   <input type="text" pattern="[A-Za-z]*" required #profileFname="ngModel" [(ngModel)]="cardHolderFname" maxlength="20" class="form-control"
                     placeholder="First Name" name="profileFname" id="profileFname">
-                  <div [hidden]="profileFname.valid || profileFname.pristine" class="alert alert-danger">Enter Valid Name
-                  </div>
+                  <!--<div [hidden]="profileFname.valid || profileFname.pristine" class="alert alert-danger">Enter Valid Name
+                  </div>-->
+                  <div *ngIf="error" class="alert alert-danger">{{error1}}</div>
                 </div>
 
               </div>
@@ -135,17 +136,12 @@
             <div [hidden]="proImage.valid || proImage.pristine" class="alert alert-danger">Upload profile image
             </div>
           </div>
-
-
         </div>
-
-
       </div>
 
 <div class="col-lg-3 col-xs-12 col-sm-3 col-md-3 pull-right">
-  <button id="next" [disabled]='!profileFname.valid || !profileLname.valid || !phoneNumber.valid || !email.valid || !address.valid || !town.valid || !cif.valid || !dob.valid || !accBranch.valid ' class="btn btn-lg btn-primary h-option-btn btn-block" (click)="userDetails(profileFname.value,profileLname.value,pCode.value,phoneNumber.value,email.value,address.value,town.value,cif.value,dob.value,accBranch.value,proImage.value)">SUBMIT</button>
+  <button id="next" class="btn btn-lg btn-primary h-option-btn btn-block" (click)="userDetails(profileFname.value,profileLname.value,pCode.value,phoneNumber.value,email.value,address.value,town.value,cif.value,dob.value,accBranch.value,proImage.value)">SUBMIT</button>
 
-  <!--<a routerLink="/welcome" href="#" class="btn btn-lg btn-primary h-option-btn btn-block">SUBMIT</a>-->
 </div>
 <div class="col-lg-3 col-xs-12 col-sm-3 col-md-3 pull-right">
   <a href="#" id="cancel" class="btn btn-lg btn-primary h-option-btn btn-block">CANCEL</a>
