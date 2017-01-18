@@ -16,8 +16,14 @@ namespace Card.Controllers
     public class CardController : Controller
     {
         private static IDbRepository<CardRequest> CardRequestDbRepository { get; set; }
+
+        public CardController(IDbRepository<CardRequest> iDbRepository = null)
+        {
+            CardRequestDbRepository = iDbRepository;
+        }
+
         [HttpPost]
-        public IActionResult CardRequestWithID([FromBody] CardRequest cardRequest, IDbRepository<CardRequest> iDbRepository = null)
+        public IActionResult CardRequestWithID([FromBody] CardRequest cardRequest)
         {
             try
             {
@@ -33,7 +39,7 @@ namespace Card.Controllers
         }
 
         [HttpPost]
-        public IActionResult CardRequest([FromBody]CardRequest cardRequest,IDbRepository<CardRequest> iDbRepository = null)
+        public IActionResult CardRequest([FromBody]CardRequest cardRequest)
         {
             try
             {
