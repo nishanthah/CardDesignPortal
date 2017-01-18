@@ -17,7 +17,7 @@ export class UserService {
     UserData(fName, lName, code, phoneNum, emailAddress, address, town, cif, dob, accBranch, file): Observable<boolean> {
         var currentObj = this;
         return this.http.post(this.commonService.getApiHostAddress() + 'api/User', {
-            "Id": this.commonService.getUserIdToken(),
+            "Id": this.commonService.getTokenUserId(),
             "FirstName": fName,
             "LastName": lName,
             "PhoneNumber": phoneNum,
@@ -61,16 +61,9 @@ export class UserService {
             })
     }
 
-    getAUser(uId) {
-
-        return this.http.post(this.commonService.getApiHostAddress() + "api/UserDetails/id", { Id: uId }).toPromise()
-            .then(function (response) {
-                var result = response.json();
-                return result;
-            })
-    }
-
     logout() {
-        localStorage.removeItem('currentUser');
+        this.commonService.setToken("");
+        this.commonService.setCardTemplateUrl("");
+        this.commonService.setCardHolderName("");
     }
 }

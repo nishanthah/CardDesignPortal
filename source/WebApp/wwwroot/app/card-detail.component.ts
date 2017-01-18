@@ -18,8 +18,8 @@ declare var componentHandler: any;
 })
 export class CardDetailComponent extends OnInit implements AfterViewInit {
 
-    expirationDate: string;
-    mailingAddress: string;
+    public expirationDate: string;
+    public mailingAddress: string;
     private cardHolderName: string;
     private cardTemplateUrl: string;
 
@@ -37,16 +37,11 @@ export class CardDetailComponent extends OnInit implements AfterViewInit {
         if (this.commonService.getCardTemplateUrl() != null) {
             this.cardTemplateUrl = commonService.getCardTemplateUrl();
         }
-        
     }
 
     ngOnInit() {
-        this.GetUserDetails(1);
+        this.GetUserDetails(this.commonService.getTokenUserId());
         this.CardExpireDateCalculate();
-    }
-
-    CardRequest() {
-        this.requestCardService.CardRequest(1, 1, 1, "Nishan", this.expirationDate);
     }
 
     CardExpireDateCalculate() {
@@ -62,12 +57,18 @@ export class CardDetailComponent extends OnInit implements AfterViewInit {
         let currentObject = this;
         this.userService.getUser(Id)
             .then(function (result) {
-                currentObject.mailingAddress =  result.maillingAddress;
+                currentObject.mailingAddress = result.maillingAddress;
             });
     }
 
     Submit(): void {
-        this.router.navigate(['/final']);
+        // this.requestCardService.CardRequest(this.commonService.getTokenUserId(), 1, this.cardHolderName, this.expirationDate)
+        //     .subscribe(user => {
+                this.router.navigate(['/final']);
+            // }, error => {
+            //     alert("User registration is failed");
+            // }
+            // );
     }
 
     ngAfterViewInit() {

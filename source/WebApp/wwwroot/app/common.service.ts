@@ -38,7 +38,7 @@ export class CommonService {
         this.userToken = token;
     }
 
-    getUserIdToken(){
+    getTokenUserId(){
         let jwtHelper = new JwtHelper();        
         return jwtHelper.decodeToken(this.userToken).sub;
     }

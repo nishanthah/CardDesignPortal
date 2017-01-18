@@ -3,13 +3,18 @@ import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { CardRequest } from './Request-Card';
 import { Observable } from 'rxjs/Observable';
+import { CommonService } from './common.service';
 
 @Injectable()
 export class RequestCardService {
 
-    constructor(public _http: Http) { }
+    constructor(
+        private _http: Http,
+        private commonService: CommonService
+    ) { }
 
     private _cardDetailsUrl = 'api/CardRequest';
+    private cardDetailsUrl = 'api/CardRequest';
 
     getRequestCardDetails(): Observable<CardRequest[]> {
         return this._http.get(this._cardDetailsUrl)
@@ -19,54 +24,54 @@ export class RequestCardService {
 
     }
 
-    private cardDetailsUrl = '/api/CardRequest/id';
-    RequestCard(id: number): Observable<CardRequest> {
+    CardRequest(id, templateId, cardHolderName, expireDate) {
 
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-
-        return this._http.post(this.cardDetailsUrl, { "id": 1 }, options)
-            .map(this.extractData)
-            .catch(this.handleError).do(data => console.log("one :" + JSON.stringify(data)));
-    }
-
-    CardRequest(id, cardNo, templateId, cardHolderName, expireDate) {
-
-        return this._http.post('api/CardRequest', { "id": id, "cardNo": cardNo, "templateId": templateId, "cardHolderName": cardHolderName, "expireDate": expireDate })
+        return this._http.post(
+            this.commonService.getApiHostAddress() + this.cardDetailsUrl,
+            {
+                "Id": id,
+                "TemplateId": templateId,
+                "CardHolderName": cardHolderName,
+                "ExpireDate": expireDate
+            },
+            this.commonService.getHeaderOption()
+        )
             .map((response: Response) => {
-
-                let apiResponse = response.json();
-                if (apiResponse)
-                    alert("Request had made successfully...!");
-                else
-                    alert("Error");
-
+                let responseValue = response.json();
+                return responseValue;
             })
-            .subscribe();
+            .catch((error: Response | any) => {
+                let errMsg: string;
+                if (error instanceof Response) {
+                    const body = error.json() || '';
+                    const err = body.error || JSON.stringify(body);
+                    errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+                } else {
+                    errMsg = error.message ? error.message : error.toString();
+                }
+                console.error(errMsg);
+                return Observable.throw(errMsg);
+            })
 
     }
-
 
     private extractData(res: Response) {
         let body = res.json();
         return body.data || {};
     }
+
     private handleError(error: Response) {
         console.error(error);
         return Observable.throw(error.json().error || 'Server error');
     }
 
     getACard(uId) {
-
         return this._http.post("api/CardRequest/id", { Id: uId }).toPromise()
             .then(function (response) {
-
                 var result = response.json();
-
                 return result;
             })
     }
-
 
 }
 
