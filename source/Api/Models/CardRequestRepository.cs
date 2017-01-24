@@ -18,11 +18,11 @@ namespace Card.Models
             {
                 using (DbConnect connect = new DbConnect())
                 {
-                    string query = "INSERT INTO card_request (id,card_no,template_id,card_holder_name,expire_date)VALUES ("
+                    string query = "INSERT INTO card_request (id,card_no,template_id,card_holder_name,expire_date) VALUES ("
                     + cardRequest.Id + ",'"
                     + cardRequest.CardNo + "',"
-                    + cardRequest.TemplateId + ","
-                    + cardRequest.CardHolderName + ",'"
+                    + cardRequest.TemplateId + ",'"
+                    + cardRequest.CardHolderName + "','"
                     + cardRequest.ExpireDate + "')";
                     connect.MysqlExecuteNonQuery(query);
                 }
@@ -54,7 +54,7 @@ namespace Card.Models
                         CardNo = dataReader["card_no"].ToString(),
                         TemplateId = Convert.ToInt32(dataReader["template_id"].ToString()),
                         CardHolderName = dataReader["card_holder_name"].ToString(),
-                        ExpireDate = Convert.ToDateTime(dataReader["expire_date"].ToString())
+                        ExpireDate = dataReader["expire_date"].ToString()
                     };
                 }
             }
@@ -74,7 +74,7 @@ namespace Card.Models
             {
                 using (DbConnect connect = new DbConnect())
                 {
-                    MySqlDataReader dataReader = connect.MysqlExecuteQuery("SELECT * FROM card_request where id=" + cardRequest.Id);
+                    MySqlDataReader dataReader = connect.MysqlExecuteQuery("SELECT * FROM card_request ");
                     while (dataReader.Read())
                     {
                         cardRequest = new CardRequest()
@@ -83,7 +83,7 @@ namespace Card.Models
                             CardNo = dataReader["card_no"].ToString(),
                             TemplateId = Convert.ToInt32(dataReader["template_id"].ToString()),
                             CardHolderName = dataReader["card_holder_name"].ToString(),
-                            ExpireDate = Convert.ToDateTime(dataReader["expire_date"].ToString())
+                            ExpireDate = dataReader["expire_date"].ToString()
                         };
                     }
                 }

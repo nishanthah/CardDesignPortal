@@ -8,6 +8,7 @@ using Card.Models;
 using System.Linq;
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
+using System.Globalization;
 
 namespace Card.Controllers
 {
@@ -28,7 +29,7 @@ namespace Card.Controllers
             try
             {
                 IEnumerable<CardRequest> cardDetailsList = CardRequestDbRepository.GetAll();
-                cardRequest = cardDetailsList.Where(x=>x.Id == cardRequest.Id).FirstOrDefault();
+                cardRequest = cardDetailsList.Where(x => x.Id == cardRequest.Id).FirstOrDefault();
 
                 return Ok(cardRequest);
             }
@@ -43,12 +44,30 @@ namespace Card.Controllers
         {
             try
             {
+                CardRequest existingCardRequest = CardRequestDbRepository.GetAll().LastOrDefault();
+                if (existingCardRequest != null)
+                {
+                    cardRequest.CardNo = "" + int.Parse(existingCardRequest.CardNo.ToString()) + 1;
+
+                }
+                else
+                {
+                    cardRequest.CardNo = "" + 1;
+                }
+
+                var dateTime = DateTime.Parse(cardRequest.ExpireDate.ToString());
+                cardRequest.ExpireDate = dateTime.ToString("yyyy-MM-dd");
+                
                 CardRequestDbRepository.Add(cardRequest);
                 return Ok(true);
             }
             catch (MySqlException mySqlException)
             {
                 return BadRequest(mySqlException.Message);
+            }
+            catch (FormatException formatException)
+            {
+                return BadRequest("Card number generating error is occured");
             }
         }
     }

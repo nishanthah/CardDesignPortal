@@ -8,6 +8,6 @@ namespace Card.Models
         public string CardNo { get; set; }
         public int TemplateId { get; set; }
         public string CardHolderName { get; set; }
-        public DateTime ExpireDate { get; set; }
+        public string ExpireDate { get; set; }
     }
 }
