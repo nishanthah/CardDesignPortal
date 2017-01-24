@@ -56,5 +56,21 @@ namespace Card.Controllers
                 return BadRequest(mySqlException.Message);
             }
         }
+
+        [HttpPost]
+        [Authorize(Policy = "PortalUser")]
+        public IActionResult UserExist([FromBody] UserDetail userDetail)
+        {
+            try
+            {
+                int userCount = this.UserDetailDbRepository.GetAll().Where(x => x.Id == userDetail.Id).Count();
+
+                return Ok(userCount);
+            }
+            catch (MySqlException mySqlException)
+            {
+                return BadRequest(mySqlException.Message);
+            }
+        }
     }
 }
