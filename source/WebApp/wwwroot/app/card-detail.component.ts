@@ -62,13 +62,13 @@ export class CardDetailComponent extends OnInit implements AfterViewInit {
     }
 
     Submit(): void {
-        // this.requestCardService.CardRequest(this.commonService.getTokenUserId(), 1, this.cardHolderName, this.expirationDate)
-        //     .subscribe(user => {
+        this.requestCardService.CardRequest(this.commonService.getTokenUserId(), 1, this.cardHolderName, this.expirationDate)
+            .subscribe(user => {
                 this.router.navigate(['/final']);
-            // }, error => {
-            //     alert("User registration is failed");
-            // }
-            // );
+            }, error => {
+                alert("Card registration is failed");
+            }
+            );
     }
 
     ngAfterViewInit() {
