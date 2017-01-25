@@ -2,10 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './authentication.service';
 import { Router } from '@angular/router';
 import { CommonService } from './common.service';
+import { UserService } from './user.service';
 
 @Component({
     selector: 'login-page',
     templateUrl: 'app/login.component.html',
+    providers: [
+        UserService
+    ]
 })
 export class LoginComponent implements OnInit {
 
@@ -13,7 +17,8 @@ export class LoginComponent implements OnInit {
     constructor(
         private router: Router,
         private authenticationService: AuthenticationService,
-        private commonService: CommonService
+        private commonService: CommonService,
+        private userService: UserService
     ) { }
 
     ngOnInit() {
@@ -26,7 +31,16 @@ export class LoginComponent implements OnInit {
             .then(function (result) {
                 if (result != null) {
                     currentObj.commonService.setToken(result.access_token);
-                    currentObj.router.navigate(['/user']);
+
+                    currentObj.userService.isUserRegister(currentObj.commonService.getTokenUserId())
+                        .then(function (result) {
+                            if (!result) {
+                                currentObj.router.navigate(['/user']);
+                            }
+                            else {
+                                currentObj.router.navigate(['/welcome']);
+                            }
+                        })
                 }
                 else if (username == null || username == "") {
                     currentObj.error = 'You must enter username.';
@@ -38,8 +52,7 @@ export class LoginComponent implements OnInit {
                     currentObj.error = 'Username or password is incorrect';
                 }
             });
-    };
-
+    }
 }
 
 

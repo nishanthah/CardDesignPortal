@@ -14,7 +14,7 @@ export class UserService {
         private commonService: CommonService
     ) { }
 
-    UserData(fName, lName, code, phoneNum, emailAddress, address, town, cif, dob, accBranch, file): Observable<boolean> {
+    userData(fName, lName, code, phoneNum, emailAddress, address, town, cif, dob, accBranch, file): Observable<boolean> {
         var currentObj = this;
         return this.http.post(this.commonService.getApiHostAddress() + 'api/User', {
             "Id": this.commonService.getTokenUserId(),
@@ -53,6 +53,19 @@ export class UserService {
         return this.http.post(
             this.commonService.getApiHostAddress() + "api/UserById",
             { "id": uId },
+            this.commonService.getHeaderOption()
+        ).toPromise()
+            .then(function (response) {
+                var result = response.json();
+                return result;
+            })
+    }
+
+    isUserRegister(id: number) {
+
+        return this.http.post(
+            this.commonService.getApiHostAddress() + "api/IsUserRegister",
+            { "id": id },
             this.commonService.getHeaderOption()
         ).toPromise()
             .then(function (response) {

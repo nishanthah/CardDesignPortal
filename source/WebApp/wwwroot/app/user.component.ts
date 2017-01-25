@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 
 export class UserComponent {
-
+    
     constructor(
         private _service: UserService,
         private router: Router,
@@ -20,14 +20,12 @@ export class UserComponent {
     ) { }
 
     userDetails(fName, lName, code, phoneNum, emailAddress, address, town, cif, dob, accBranch, file) {
-        this._service.UserData(fName, lName, code, phoneNum, emailAddress, address, town, cif, dob, accBranch, file)
+        this._service.userData(fName, lName, code, phoneNum, emailAddress, address, town, cif, dob, accBranch, file)
             .subscribe(user => {
                 this.router.navigate(['/welcome']);
             }, error => {
                 alert("User registration is failed");
             });
-
-
     }
 }
 
