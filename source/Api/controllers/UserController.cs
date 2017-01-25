@@ -59,13 +59,16 @@ namespace Card.Controllers
 
         [HttpPost]
         [Authorize(Policy = "PortalUser")]
-        public IActionResult UserExist([FromBody] UserDetail userDetail)
+        public IActionResult IsUserRegister([FromBody] UserDetail userDetail)
         {
             try
             {
                 int userCount = this.UserDetailDbRepository.GetAll().Where(x => x.Id == userDetail.Id).Count();
-
-                return Ok(userCount);
+                if (userCount == 1)
+                {
+                    return Ok(true);
+                }
+                return Ok(false);
             }
             catch (MySqlException mySqlException)
             {
